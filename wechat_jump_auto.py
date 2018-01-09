@@ -83,6 +83,11 @@ def jump(distance):
     press_time = distance * press_coefficient
     press_time = max(press_time, 200)   # 设置 200ms 是最小的按压时间
     press_time = int(press_time)
+    '''
+    按压时间取区间随机值，避免每次都落到棋盘中心点 Kevin 20180109
+    '''
+    press_time = int(random.uniform(press_time-20,press_time+20))
+
     cmd = 'adb shell input swipe {x1} {y1} {x2} {y2} {duration}'.format(
         x1=swipe_x1,
         y1=swipe_y1,
